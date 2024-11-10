@@ -29,7 +29,6 @@ import androidx.compose.ui.unit.dp
 import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Share
-import androidx.compose.ui.res.dimensionResource
 import androidx.core.content.ContextCompat.startActivity
 import com.example.dessertclicker.ui.theme.DessertClickerTheme
 import com.example.dessertclicker.ui.theme.DessertViewModel
@@ -137,18 +136,20 @@ fun DessertClickerScreen(
                     painter = painterResource(dessertImageId),
                     contentDescription = null,
                     modifier = Modifier
-                        .width(dimensionResource(R.dimen.image_size))
-                        .height(dimensionResource(R.dimen.image_size))
+                        .width(150.dp)
+                        .height(150.dp)
                         .align(Alignment.Center)
                         .clickable { onDessertClicked() },
                     contentScale = ContentScale.Crop,
                 )
             }
-            TransactionInfo(
-                revenue = revenue,
-                dessertsSold = dessertsSold,
-                modifier = Modifier.background(MaterialTheme.colorScheme.secondaryContainer)
-            )
+            Column(
+                modifier = modifier
+                    .background(Color.White).width(500.dp).height(100.dp),
+            ) {
+                Text("Desserts Sold: $dessertsSold")
+                Text("Revenue: $$revenue", textAlign = TextAlign.End)
+            }
         }
     }
 }
